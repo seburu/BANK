@@ -7,12 +7,24 @@ public class main {
     int noOfUsers;
     String[] names = {"Sebastian","Marco","Sofie","Nick","Mathilde"};
     String[] action = {"D","W","T","B"};
+
+    Action[] actionsSeb = {new Action("Sebastian","D",1000,""),
+                        new Action("Sebastian","W",10,""),
+                        new Action("Sebastian","B",0,""),
+                        new Action("Sebastian","T",100,"Marco"),
+                        new Action("Sebastian","D",1000,""),
+                        new Action("Sebastian","W",10,""),
+                        new Action("Sebastian","B",0,""),
+                        new Action("Sebastian","T",100,"Marco")};
+
     String[] inputs =    {names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
             names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3],
             names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
             names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3],
             names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
             names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3]};
+
+    String[] seb = {names[0]+" "+action[0]+" 10000", names[0]+" "+action[0]+" 200",names[0]+" "+action[0],names[0]+" "+action[0],names[0]+" "+action[0]};
 
     public Account[] initializeAccounts(){
         noOfUsers = names.length;
