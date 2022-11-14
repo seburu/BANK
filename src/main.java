@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class main {
     int noOfUsers;
-    String[] names = {"Sebastian","Marco","Sofie","Mathilde"};
+    String[] names = {"Sebastian","Marco","Sofie","Nick","Mathilde"};
 
     public Account[] initializeAccounts(){
         noOfUsers = names.length;
