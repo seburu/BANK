@@ -7,12 +7,12 @@ public class main {
     int noOfUsers;
     String[] names = {"Sebastian","Marco","Sofie","Nick","Mathilde"};
     String[] action = {"D","W","T","B"};
-    String[] inputs =    {names[0]+"D", names[1]+ "D",names[2]+ "D",names[3]+ "D",names[4]+ "D",names[0]+ "W",names[1]+ "W",names[2]+ "W",names[3]+ "W",
-            names[4]+ "W",names[0]+ "T",names[1]+ "T",names[2]+ "T",names[3]+ "T",names[4]+ "T",names[0]+ "B",names[1]+ "B",names[2]+ "B",names[3]+ "B",names[4]+ "B",
-            names[0]+"D", names[1]+ "D",names[2]+ "D",names[3]+ "D",names[4]+ "D",names[0]+ "W",names[1]+ "W",names[2]+ "W",names[3]+ "W",
-            names[4]+ "W",names[0]+ "T",names[1]+ "T",names[2]+ "T",names[3]+ "T",names[4]+ "T",names[0]+ "B",names[1]+ "B",names[2]+ "B",names[3]+ "B",names[4]+ "B",
-            names[0]+"D", names[1]+ "D",names[2]+ "D",names[3]+ "D",names[4]+ "D",names[0]+ "W",names[1]+ "W",names[2]+ "W",names[3]+ "W",
-            names[4]+ "W",names[0]+ "T",names[1]+ "T",names[2]+ "T",names[3]+ "T",names[4]+ "T",names[0]+ "B",names[1]+ "B",names[2]+ "B",names[3]+ "B",names[4]+ "B"};
+    String[] inputs =    {names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
+            names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3],
+            names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
+            names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3],
+            names[0]+" "+action[0], names[1]+" "+action[0],names[2]+" "+action[0],names[3]+" "+action[0],names[4]+" "+action[0],names[0]+" "+action[1],names[1]+" "+action[1],names[2]+" "+action[1],names[3]+" "+action[1],
+            names[4]+" "+action[1],names[0]+" "+action[2],names[1]+" "+action[2],names[2]+" "+action[2],names[3]+" "+action[2],names[4]+" "+action[2],names[0]+" "+action[3],names[1]+" "+action[3],names[2]+" "+action[3],names[3]+" "+action[3],names[4]+" "+action[3]};
 
     public Account[] initializeAccounts(){
         noOfUsers = names.length;
@@ -37,7 +37,6 @@ public class main {
 
     }
 
-    action test = new action('w');
 
 }
 
