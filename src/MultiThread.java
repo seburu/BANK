@@ -1,17 +1,21 @@
+
 public class MultiThread extends Thread {
 
-    private int threadNumber;
+    Action[] actions;
 
-    public MultiThread (int threadNumber){ // Constructor
-        this.threadNumber = threadNumber;
-
+    public MultiThread (Action[] actions){ // Constructor
+        this.actions = actions;
     }
+
 
 
     @Override
     public void run(){
+
+        //Account userAcc = main.getAccounts;
+
         for (int i = 1; i <= 5; i++){
-            System.out.println(i + " From thread number" + threadNumber);
+            //System.out.println(i + " From thread number" + threadNumber);
 
             try {
                 Thread.sleep(1); // Pause for 1 second between each step in the loop
