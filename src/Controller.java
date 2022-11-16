@@ -90,7 +90,7 @@ public class Controller {
     public Account[] initializeAccounts(){
         noOfUsers = names.length;
 
-        for(int i=0; i<noOfUsers-1;i++){
+        for(int i=0; i<noOfUsers;i++){
             Account account = new Account(100,names[i]);
             accounts[i] = account;
         }
@@ -130,70 +130,91 @@ public class Controller {
 
     public void withdraw(Action action){
         Account currAcc = findAccount(action.id);
-        while(currAcc.isInUse){
+        /*while(currAcc.isInUse){
             System.out.println("loading...");
+        }*/
+        //currAcc.isInUse = true;
+        try {
+            currAcc.mutex.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        currAcc.isInUse = true;
         currAcc.changeBalance(-action.amount);
         System.out.println("Withdrew " + action.amount + " from " + action.id);
-        currAcc.isInUse = false;
+        currAcc.mutex.release();
+
+        //currAcc.isInUse = false;
     }
 
     public void deposit(Action action){
         Account currAcc = findAccount(action.id);
-        while(currAcc.isInUse){
+        /*while(currAcc.isInUse){
             System.out.println("loading...");
+        }*/
+        //currAcc.isInUse = true;
+        try {
+            currAcc.mutex.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        currAcc.isInUse = true;
         currAcc.changeBalance(action.amount);
         System.out.println("Deposited " + action.amount + " to " + action.id);
-        currAcc.isInUse = false;
+        currAcc.mutex.release();
+
+        //currAcc.isInUse = false;
     }
 
     public void tranfer(Action action){
         Account currAcc = findAccount(action.id);
         Account recAcc = findAccount(action.receiver);
-
+        /*
         while(currAcc.isInUse || recAcc.isInUse){
             System.out.println("loading...");
         }
         currAcc.isInUse = true;
         recAcc.isInUse = true;
-
+        */
+        try {
+            currAcc.mutex.acquire();
+            recAcc.mutex.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(currAcc.changeBalance(-action.amount)){
             recAcc.changeBalance(action.amount);
             System.out.println("Transfered " + action.amount + " to " + action.receiver + " from " + action.id);
         }
 
-        currAcc.isInUse = false;
-        recAcc.isInUse = false;
+        currAcc.mutex.release();
+        recAcc.mutex.release();
+
+        //currAcc.isInUse = false;
+        //recAcc.isInUse = false;
     }
 
     public void balance(Action action){
         Account currAcc = findAccount(action.id);
 
-        while(currAcc.isInUse){
+        /*while(currAcc.isInUse){
             System.out.println("loading...");
+        }*/
+        try {
+            currAcc.mutex.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
         System.out.println("Current balance for " + action.id + " is: " + currAcc.balance);
+        currAcc.mutex.release();
+
     }
 
     public void doAction(Action action){
         String act = action.action;
-        switch (act){
-            case "D" :
-                deposit(action);
-                break;
-            case "W" :
-                withdraw(action);
-                break;
-            case "T" :
-                tranfer(action);
-                break;
-            case "B" :
-                balance(action);
-                break;
+        switch (act) {
+            case "D" -> deposit(action);
+            case "W" -> withdraw(action);
+            case "T" -> tranfer(action);
+            case "B" -> balance(action);
         }
     }
     public void start(){
