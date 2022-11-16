@@ -9,21 +9,60 @@ public class Controller {
     Account[] accounts = new Account[names.length];
 
     Action[] actionsSeb = {new Action("Sebastian","D",1000,""),
-                        new Action("Sebastian","W",10,""),
-                        new Action("Sebastian","B",0,""),
-                        new Action("Sebastian","T",100,"Marco"),
-                        new Action("Sebastian","D",1000,""),
-                        new Action("Sebastian","W",10,""),
-                        new Action("Sebastian","B",0,""),
-                        new Action("Sebastian","T",100,"Marco")};
+            new Action("Sebastian","D",500,""),
+            new Action("Sebastian","D",100,""),
+            new Action("Sebastian","W",10,""),
+            new Action("Sebastian","W",100,""),
+            new Action("Sebastian","W",400,""),
+            new Action("Sebastian","T",10,names[(int) (Math.random()*4)]),
+            new Action("Sebastian","T",100,names[(int) (Math.random()*4)]),
+            new Action("Sebastian","T",200,names[(int) (Math.random()*4)]),
+            new Action("Sebastian","B",10,"")};
+
     Action[] actionsSofie = {new Action("Sofie","D",1000,""),
-            new Action("Sofie","W",10,"")};
+            new Action("Sofie","D",500,""),
+            new Action("Sofie","D",100,""),
+            new Action("Sofie","W",10,""),
+            new Action("Sofie","W",100,""),
+            new Action("Sofie","W",400,""),
+            new Action("Sofie","T",10,names[(int) (Math.random()*4)]),
+            new Action("Sofie","T",100,names[(int) (Math.random()*4)]),
+            new Action("Sofie","T",200,names[(int) (Math.random()*4)]),
+            new Action("Sofie","B",10,"")};
+
     Action[] actionsMarco = {new Action("Marco","D",1000,""),
-            new Action("Marco","W",10,"")};
+            new Action("Marco","D",500,""),
+            new Action("Marco","D",100,""),
+            new Action("Marco","W",10,""),
+            new Action("Marco","W",100,""),
+            new Action("Marco","W",400,""),
+            new Action("Marco","T",10,names[(int) (Math.random()*4)]),
+            new Action("Marco","T",100,names[(int) (Math.random()*4)]),
+            new Action("Marco","T",200,names[(int) (Math.random()*4)]),
+            new Action("Marco","B",10,"")};
+
     Action[] actionsNick = {new Action("Nick","D",1000,""),
-            new Action("Nick","W",10,"")};
+            new Action("Nick","D",500,""),
+            new Action("Nick","D",100,""),
+            new Action("Nick","W",10,""),
+            new Action("Nick","W",100,""),
+            new Action("Nick","W",400,""),
+            new Action("Nick","T",10,names[(int) (Math.random()*4)]),
+            new Action("Nick","T",100,names[(int) (Math.random()*4)]),
+            new Action("Nick","T",200,names[(int) (Math.random()*4)]),
+            new Action("Nick","B",10,"")};
+
     Action[] actionsMathilde = {new Action("Mathilde","D",1000,""),
-            new Action("Mathilde","W",10,"")};
+            new Action("Mathilde","D",500,""),
+            new Action("Mathilde","D",100,""),
+            new Action("Mathilde","W",10,""),
+            new Action("Mathilde","W",100,""),
+            new Action("Mathilde","W",400,""),
+            new Action("Mathilde","T",10,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","T",100,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","T",200,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","B",10,"")};
+
     Action[] testAct = { new Action("Sebastian","T",100,"Marco"),
             new Action("Sebastian","T",100,"Marco"),
             new Action("Sebastian","T",100,"Marco"),

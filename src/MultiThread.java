@@ -1,4 +1,3 @@
-
 public class MultiThread extends Thread {
 
     Action[] actions;
