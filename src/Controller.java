@@ -24,6 +24,26 @@ public class Controller {
             new Action("Nick","W",10,"")};
     Action[] actionsMathilde = {new Action("Mathilde","D",1000,""),
             new Action("Mathilde","W",10,"")};
+    Action[] testAct = { new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco"),
+            new Action("Sebastian","T",100,"Marco")
+    };
+    Action[] testAct2 = { new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco"),
+            new Action("Sofie","T",100,"Marco")
+    };
 
 
     String[] seb = {names[0]+" "+action[0]+" 10000", names[0]+" "+action[0]+" 200",names[0]+" "+action[0],names[0]+" "+action[0],names[0]+" "+action[0]};
@@ -38,16 +58,20 @@ public class Controller {
         return accounts;
     }
 
-    public Account[] getAccounts() {
-        return accounts;
-    }
+    //public Account[] getAccounts() {return accounts;}
 
     public void initializeThreads(){
-        MultiThread seb = new MultiThread(actionsSeb);
-        MultiThread marco = new MultiThread(actionsMarco);
-        MultiThread sof = new MultiThread(actionsSofie);
-        MultiThread nick = new MultiThread(actionsNick);
-        MultiThread math = new MultiThread(actionsMathilde);
+        MultiThread seb = new MultiThread(actionsSeb, this);
+        MultiThread marco = new MultiThread(actionsMarco, this);
+        MultiThread sof = new MultiThread(actionsSofie,this);
+        MultiThread nick = new MultiThread(actionsNick,this);
+        MultiThread math = new MultiThread(actionsMathilde,this);
+
+        MultiThread test1 = new MultiThread(testAct,this);
+        MultiThread test2 = new MultiThread(testAct2,this);
+
+        test1.start();
+        test2.start();
 
         seb.start();
         marco.start();
@@ -72,6 +96,7 @@ public class Controller {
         }
         currAcc.isInUse = true;
         currAcc.changeBalance(-action.amount);
+        System.out.println("Withdrew " + action.amount + " from " + action.id);
         currAcc.isInUse = false;
     }
 
@@ -82,6 +107,7 @@ public class Controller {
         }
         currAcc.isInUse = true;
         currAcc.changeBalance(action.amount);
+        System.out.println("Deposited " + action.amount + " to " + action.id);
         currAcc.isInUse = false;
     }
 
@@ -95,8 +121,10 @@ public class Controller {
         currAcc.isInUse = true;
         recAcc.isInUse = true;
 
-        currAcc.changeBalance(-action.amount);
-        recAcc.changeBalance(action.amount);
+        if(currAcc.changeBalance(-action.amount)){
+            recAcc.changeBalance(action.amount);
+            System.out.println("Transfered " + action.amount + " to " + action.receiver + " from " + action.id);
+        }
 
         currAcc.isInUse = false;
         recAcc.isInUse = false;
@@ -112,22 +140,27 @@ public class Controller {
         System.out.println("Current balance for " + action.id + " is: " + currAcc.balance);
     }
 
-    public void doAction(){
-
-    }
-
-    public static void main(String[] args) {
-
-        for (int i = 0; i < 5; i++){
-            //MultiThread myThing = new MultiThread(i);
-            //myThing.start();
-            //myThing.join(); Needs a try catch around it but ensures that the next thread joins when the first is dead
-            //myThing.isAlive() Returns a boolean for weather the thread is still running
+    public void doAction(Action action){
+        String act = action.action;
+        switch (act){
+            case "D" :
+                deposit(action);
+                break;
+            case "W" :
+                withdraw(action);
+                break;
+            case "T" :
+                tranfer(action);
+                break;
+            case "B" :
+                balance(action);
+                break;
         }
-        //myThing.run(); //This runs the code, but not in its own thread.
-
     }
-
+    public void start(){
+        accounts = initializeAccounts();
+        initializeThreads();
+    }
 
 }
 

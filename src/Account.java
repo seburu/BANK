@@ -8,12 +8,14 @@ public class Account {
         this.name = name;
     }
 
-    public void changeBalance(int amount){
+    public Boolean changeBalance(int amount){
         if (this.balance + amount < 0){
             System.out.println("You do not have enough money to withdraw this amount");
+            return false;
         }
         else{
             this.balance += amount;
         }
+        return true;
     }
 }
