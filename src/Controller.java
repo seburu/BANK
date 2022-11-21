@@ -8,45 +8,36 @@ public class Controller {
     String[] action = {"D","W","T","B"};
     Account[] accounts = new Account[names.length];
 
-    Action[] actionsSeb = {new Action("Sebastian","D",1000,""),
-                        new Action("Sebastian","W",10,""),
-                        new Action("Sebastian","B",0,""),
-                        new Action("Sebastian","T",100,"Marco"),
-                        new Action("Sebastian","D",1000,""),
-                        new Action("Sebastian","W",10,""),
-                        new Action("Sebastian","B",0,""),
-                        new Action("Sebastian","T",100,"Marco")};
-    Action[] actionsSofie = {new Action("Sofie","D",1000,""),
-            new Action("Sofie","W",10,"")};
-    Action[] actionsMarco = {new Action("Marco","D",1000,""),
-            new Action("Marco","W",10,"")};
-    Action[] actionsNick = {new Action("Nick","D",1000,""),
-            new Action("Nick","W",10,"")};
-    Action[] actionsMathilde = {new Action("Mathilde","D",1000,""),
-            new Action("Mathilde","W",10,"")};
-    Action[] testAct = { new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco")
-    };
-    Action[] testAct2 = { new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco")
-    };
+    Action[] actionsSeb = {
+            new Action("Sebastian","D",0,""),
+            new Action("Sebastian","W", 0,""),
+            new Action("Sebastian","T",0,names[(int) (Math.random()*4)]),
+            new Action("Sebastian","B",0,"")};
 
+    Action[] actionsSofie = {
+            new Action("Sofie","D",0,""),
+            new Action("Sofie","W", 0,""),
+            new Action("Sofie","T",0,names[(int) (Math.random()*4)]),
+            new Action("Sofie","B",0,"")};
 
-    String[] seb = {names[0]+" "+action[0]+" 10000", names[0]+" "+action[0]+" 200",names[0]+" "+action[0],names[0]+" "+action[0],names[0]+" "+action[0]};
+    Action[] actionsMarco = {
+            new Action("Marco","D",0,""),
+            new Action("Marco","W", 0,""),
+            new Action("Mathilde","T",0,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","B",0,"")};
+
+    Action[] actionsNick = {
+            new Action("Mathilde","D",0,""),
+            new Action("Mathilde","W", 0,""),
+            new Action("Mathilde","T",0,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","B",0,"")};
+
+    Action[] actionsMathilde = {
+            new Action("Mathilde","D",0,""),
+            new Action("Mathilde","W",0,""),
+            new Action("Mathilde","T",0,names[(int) (Math.random()*4)]),
+            new Action("Mathilde","B",0,"")};
+
 
     public Account[] initializeAccounts(){
         noOfUsers = names.length;
@@ -67,11 +58,11 @@ public class Controller {
         MultiThread nick = new MultiThread(actionsNick,this);
         MultiThread math = new MultiThread(actionsMathilde,this);
 
-        MultiThread test1 = new MultiThread(testAct,this);
+        /*MultiThread test1 = new MultiThread(testAct,this);
         MultiThread test2 = new MultiThread(testAct2,this);
 
         test1.start();
-        test2.start();
+        test2.start();*/
 
         seb.start();
         marco.start();
@@ -97,6 +88,7 @@ public class Controller {
         //currAcc.isInUse = true;
         try {
             currAcc.mutex.acquire();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
