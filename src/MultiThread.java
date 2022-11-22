@@ -14,13 +14,15 @@ public class MultiThread extends Thread {
 
     @Override
     public void run(){
-        //doAction i forloop
 
+        //Loop that does 20 different actions (for each thread)
         for (int i = 0; i < 20; i++) {
             int random = (int)(Math.random()*actions.length);
+            //gives random action an random amount value.
             actions[random].amount = (int) (Math.random() * 490)+10;
 
             try {
+                //Ececute specific action
                 con.doAction(actions[random],isSlow);
             } catch (InterruptedException e) {
                 e.printStackTrace();
