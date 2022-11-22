@@ -23,14 +23,14 @@ public class Controller {
     Action[] actionsMarco = {
             new Action("Marco","D",0,""),
             new Action("Marco","W", 0,""),
-            new Action("Mathilde","T",0,names[(int) (Math.random()*4)]),
-            new Action("Mathilde","B",0,"")};
+            new Action("Marco","T",0,names[(int) (Math.random()*4)]),
+            new Action("Marco","B",0,"")};
 
     Action[] actionsNick = {
-            new Action("Mathilde","D",0,""),
-            new Action("Mathilde","W", 0,""),
-            new Action("Mathilde","T",0,names[(int) (Math.random()*4)]),
-            new Action("Mathilde","B",0,"")};
+            new Action("Nick","D",0,""),
+            new Action("Nick","W", 0,""),
+            new Action("Nick","T",0,names[(int) (Math.random()*4)]),
+            new Action("Nick","B",0,"")};
 
     Action[] actionsMathilde = {
             new Action("Mathilde","D",0,""),
