@@ -52,11 +52,11 @@ public class Controller {
     //public Account[] getAccounts() {return accounts;}
 
     public void initializeThreads(){
-        MultiThread seb = new MultiThread(actionsSeb, this);
-        MultiThread marco = new MultiThread(actionsMarco, this);
-        MultiThread sof = new MultiThread(actionsSofie,this);
-        MultiThread nick = new MultiThread(actionsNick,this);
-        MultiThread math = new MultiThread(actionsMathilde,this);
+        MultiThread seb = new MultiThread(actionsSeb, this,false);
+        MultiThread marco = new MultiThread(actionsMarco, this,false);
+        MultiThread sof = new MultiThread(actionsSofie,this,false);
+        MultiThread nick = new MultiThread(actionsNick,this,false);
+        MultiThread math = new MultiThread(actionsMathilde,this,true);
 
         /*MultiThread test1 = new MultiThread(testAct,this);
         MultiThread test2 = new MultiThread(testAct2,this);
@@ -80,58 +80,43 @@ public class Controller {
         return null;
     }
 
-    public void withdraw(Action action){
+    public void withdraw(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        //currAcc.isInUse = true;
-        try {
-            currAcc.mutex.acquire();
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        currAcc.mutex.acquire();
+
+        if(isSlow){
+            Thread.sleep(1000);
         }
         currAcc.changeBalance(-action.amount);
         System.out.println("Withdrew " + action.amount + " from " + action.id);
         currAcc.mutex.release();
 
-        //currAcc.isInUse = false;
     }
 
-    public void deposit(Action action){
+    public void deposit(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        //currAcc.isInUse = true;
-        try {
-            currAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        currAcc.mutex.acquire();
+
+        if(isSlow){
+            Thread.sleep(1000);
         }
         currAcc.changeBalance(action.amount);
         System.out.println("Deposited " + action.amount + " to " + action.id);
         currAcc.mutex.release();
 
-        //currAcc.isInUse = false;
     }
 
-    public void tranfer(Action action){
+    public void tranfer(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
         Account recAcc = findAccount(action.receiver);
-        /*
-        while(currAcc.isInUse || recAcc.isInUse){
-            System.out.println("loading...");
-        }
-        currAcc.isInUse = true;
-        recAcc.isInUse = true;
-        */
-        try {
-            currAcc.mutex.acquire();
-            recAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        currAcc.mutex.acquire();
+        recAcc.mutex.acquire();
+
+        if(isSlow){
+            Thread.sleep(1000);
         }
         if(currAcc.changeBalance(-action.amount)){
             recAcc.changeBalance(action.amount);
@@ -140,34 +125,27 @@ public class Controller {
 
         currAcc.mutex.release();
         recAcc.mutex.release();
-
-        //currAcc.isInUse = false;
-        //recAcc.isInUse = false;
     }
 
-    public void balance(Action action){
+    public void balance(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
 
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        try {
-            currAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        currAcc.mutex.acquire();
+
+        if(isSlow){
+            Thread.sleep(1000);
         }
         System.out.println("Current balance for " + action.id + " is: " + currAcc.balance);
         currAcc.mutex.release();
-
     }
 
-    public void doAction(Action action){
+    public void doAction(Action action, Boolean isSlow) throws InterruptedException {
         String act = action.action;
         switch (act) {
-            case "D" -> deposit(action);
-            case "W" -> withdraw(action);
-            case "T" -> tranfer(action);
-            case "B" -> balance(action);
+            case "D" -> deposit(action, isSlow);
+            case "W" -> withdraw(action,isSlow);
+            case "T" -> tranfer(action,isSlow);
+            case "B" -> balance(action,isSlow);
         }
     }
     public void start(){
@@ -176,4 +154,3 @@ public class Controller {
     }
 
 }
-
