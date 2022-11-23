@@ -11,6 +11,7 @@ public class Account {
         this.name = name;
     }
 
+    //method used for changing balance.
     public Boolean changeBalance(int amount){
         if (this.balance + amount < 0){
             System.out.println(name + " do not have enough money to withdraw this amount");

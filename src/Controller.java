@@ -1,117 +1,64 @@
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Controller {
 
-    int noOfUsers;
-    String[] names = {"Sebastian","Marco","Sofie","Nick","Mathilde"};
-    String[] action = {"D","W","T","B"};
+    String[] names = {"Sebastian", "Marco", "Sofie", "Nick", "Mathilde"};
     Account[] accounts = new Account[names.length];
 
-    Action[] actionsSeb = {new Action("Sebastian","D",1000,""),
-            new Action("Sebastian","D",500,""),
-            new Action("Sebastian","D",100,""),
-            new Action("Sebastian","W",10,""),
-            new Action("Sebastian","W",100,""),
-            new Action("Sebastian","W",400,""),
-            new Action("Sebastian","T",10,names[(int) (Math.random()*4)]),
-            new Action("Sebastian","T",100,names[(int) (Math.random()*4)]),
-            new Action("Sebastian","T",200,names[(int) (Math.random()*4)]),
-            new Action("Sebastian","B",10,"")};
+    //Creating actions arrays for each user
+    Action[] actionsSeb = {
+            new Action("Sebastian", "D", 0, ""),
+            new Action("Sebastian", "W", 0, ""),
+            new Action("Sebastian", "T", 0, names[(int) (Math.random() * 4)]),
+            new Action("Sebastian", "B", 0, "")};
 
-    Action[] actionsSofie = {new Action("Sofie","D",1000,""),
-            new Action("Sofie","D",500,""),
-            new Action("Sofie","D",100,""),
-            new Action("Sofie","W",10,""),
-            new Action("Sofie","W",100,""),
-            new Action("Sofie","W",400,""),
-            new Action("Sofie","T",10,names[(int) (Math.random()*4)]),
-            new Action("Sofie","T",100,names[(int) (Math.random()*4)]),
-            new Action("Sofie","T",200,names[(int) (Math.random()*4)]),
-            new Action("Sofie","B",10,"")};
+    Action[] actionsSofie = {
+            new Action("Sofie", "D", 0, ""),
+            new Action("Sofie", "W", 0, ""),
+            new Action("Sofie", "T", 0, names[(int) (Math.random() * 4)]),
+            new Action("Sofie", "B", 0, "")};
 
-    Action[] actionsMarco = {new Action("Marco","D",1000,""),
-            new Action("Marco","D",500,""),
-            new Action("Marco","D",100,""),
-            new Action("Marco","W",10,""),
-            new Action("Marco","W",100,""),
-            new Action("Marco","W",400,""),
-            new Action("Marco","T",10,names[(int) (Math.random()*4)]),
-            new Action("Marco","T",100,names[(int) (Math.random()*4)]),
-            new Action("Marco","T",200,names[(int) (Math.random()*4)]),
-            new Action("Marco","B",10,"")};
+    Action[] actionsMarco = {
+            new Action("Marco", "D", 0, ""),
+            new Action("Marco", "W", 0, ""),
+            new Action("Marco", "T", 0, names[(int) (Math.random() * 4)]),
+            new Action("Marco", "B", 0, "")};
 
-    Action[] actionsNick = {new Action("Nick","D",1000,""),
-            new Action("Nick","D",500,""),
-            new Action("Nick","D",100,""),
-            new Action("Nick","W",10,""),
-            new Action("Nick","W",100,""),
-            new Action("Nick","W",400,""),
-            new Action("Nick","T",10,names[(int) (Math.random()*4)]),
-            new Action("Nick","T",100,names[(int) (Math.random()*4)]),
-            new Action("Nick","T",200,names[(int) (Math.random()*4)]),
-            new Action("Nick","B",10,"")};
+    Action[] actionsNick = {
+            new Action("Nick", "D", 0, ""),
+            new Action("Nick", "W", 0, ""),
+            new Action("Nick", "T", 0, names[(int) (Math.random() * 4)]),
+            new Action("Nick", "B", 0, "")};
 
-    Action[] actionsMathilde = {new Action("Mathilde","D",1000,""),
-            new Action("Mathilde","D",500,""),
-            new Action("Mathilde","D",100,""),
-            new Action("Mathilde","W",10,""),
-            new Action("Mathilde","W",100,""),
-            new Action("Mathilde","W",400,""),
-            new Action("Mathilde","T",10,names[(int) (Math.random()*4)]),
-            new Action("Mathilde","T",100,names[(int) (Math.random()*4)]),
-            new Action("Mathilde","T",200,names[(int) (Math.random()*4)]),
-            new Action("Mathilde","B",10,"")};
+    Action[] actionsMathilde = {
+            new Action("Mathilde", "D", 0, ""),
+            new Action("Mathilde", "W", 0, ""),
+            new Action("Mathilde", "T", 0, names[(int) (Math.random() * 4)]),
+            new Action("Mathilde", "B", 0, "")};
 
-    Action[] testAct = { new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco"),
-            new Action("Sebastian","T",100,"Marco")
-    };
-    Action[] testAct2 = { new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco"),
-            new Action("Sofie","T",100,"Marco")
-    };
-
-
-    String[] seb = {names[0]+" "+action[0]+" 10000", names[0]+" "+action[0]+" 200",names[0]+" "+action[0],names[0]+" "+action[0],names[0]+" "+action[0]};
-
-    public Account[] initializeAccounts(){
-        noOfUsers = names.length;
-
-        for(int i=0; i<noOfUsers;i++){
-            Account account = new Account(100,names[i]);
+    //Initializes accounts
+    public Account[] initializeAccounts() {
+        //creates an account for each user.
+        for (int i = 0; i < names.length; i++) {
+            //All accounts are given a startvalue of 100 and a name from the global list.
+            Account account = new Account(100, names[i]);
             accounts[i] = account;
         }
         return accounts;
     }
 
-    //public Account[] getAccounts() {return accounts;}
+    //initializes and runs threads
+    public void initializeThreads() {
+        //Creates threads.
+        MultiThread seb = new MultiThread(actionsSeb, this, false);
+        MultiThread marco = new MultiThread(actionsMarco, this, false);
+        MultiThread sof = new MultiThread(actionsSofie, this, false);
+        MultiThread nick = new MultiThread(actionsNick, this, false);
 
-    public void initializeThreads(){
-        MultiThread seb = new MultiThread(actionsSeb, this);
-        MultiThread marco = new MultiThread(actionsMarco, this);
-        MultiThread sof = new MultiThread(actionsSofie,this);
-        MultiThread nick = new MultiThread(actionsNick,this);
-        MultiThread math = new MultiThread(actionsMathilde,this);
+        //To make the threads more interesting we have added a "slow thread"
+        MultiThread math = new MultiThread(actionsMathilde, this, true);
 
-        MultiThread test1 = new MultiThread(testAct,this);
-        MultiThread test2 = new MultiThread(testAct2,this);
-
-        test1.start();
-        test2.start();
-
+        //Starts all threads
         seb.start();
         marco.start();
         sof.start();
@@ -119,7 +66,8 @@ public class Controller {
         math.start();
     }
 
-    public Account findAccount(String name){
+    //method for finding account by its owners name.
+    public Account findAccount(String name) {
         for (Account account : accounts) {
             if (Objects.equals(account.name, name)) {
                 return account;
@@ -128,99 +76,108 @@ public class Controller {
         return null;
     }
 
-    public void withdraw(Action action){
+    //Withdraw amount from specific account.
+    public void withdraw(Action action, Boolean isSlow) throws InterruptedException {
+        //finds the account for the action
         Account currAcc = findAccount(action.id);
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        //currAcc.isInUse = true;
-        try {
-            currAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        //checks if resource is available before use and then occupies it.
+        while (!currAcc.mutex.tryAcquire()) {
         }
+
+        //slow thread sleeps
+        if (isSlow) {
+            Thread.sleep(1000);
+        }
+        //withdraws amount
         currAcc.changeBalance(-action.amount);
         System.out.println("Withdrew " + action.amount + " from " + action.id);
+
+        //makes resource available for other threads.
         currAcc.mutex.release();
 
-        //currAcc.isInUse = false;
     }
 
-    public void deposit(Action action){
+    public void deposit(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        //currAcc.isInUse = true;
-        try {
-            currAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        while (!currAcc.mutex.tryAcquire()) {
         }
+
+        if (isSlow) {
+            Thread.sleep(1000);
+        }
+
+        //deposits amount
         currAcc.changeBalance(action.amount);
         System.out.println("Deposited " + action.amount + " to " + action.id);
         currAcc.mutex.release();
 
-        //currAcc.isInUse = false;
     }
 
-    public void tranfer(Action action){
+    public void tranfer(Action action, Boolean isSlow) throws InterruptedException {
+        //finds users account.
         Account currAcc = findAccount(action.id);
+        //finds the tranfer receivers account.
         Account recAcc = findAccount(action.receiver);
-        /*
-        while(currAcc.isInUse || recAcc.isInUse){
-            System.out.println("loading...");
+
+        while (true) {
+            //try to acquire first resource
+            if (currAcc.mutex.tryAcquire()) {
+                //try to acquire second resource
+                if (recAcc.mutex.tryAcquire()) {
+                    break;
+                } else {
+                    // To prevent deadlocks we release the first acquired resources
+                    currAcc.mutex.release();
+                }
+            }
+            Thread.sleep(1);
         }
-        currAcc.isInUse = true;
-        recAcc.isInUse = true;
-        */
-        try {
-            currAcc.mutex.acquire();
-            recAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        if (isSlow) {
+            Thread.sleep(1000);
         }
-        if(currAcc.changeBalance(-action.amount)){
+        //checks if current user can afford the tranfer
+        if (currAcc.changeBalance(-action.amount)) {
+            //Tranfers money to receiver account
             recAcc.changeBalance(action.amount);
             System.out.println("Transfered " + action.amount + " to " + action.receiver + " from " + action.id);
         }
 
         currAcc.mutex.release();
         recAcc.mutex.release();
-
-        //currAcc.isInUse = false;
-        //recAcc.isInUse = false;
     }
 
-    public void balance(Action action){
+    //checks balance
+    public void balance(Action action, Boolean isSlow) throws InterruptedException {
         Account currAcc = findAccount(action.id);
 
-        /*while(currAcc.isInUse){
-            System.out.println("loading...");
-        }*/
-        try {
-            currAcc.mutex.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (!currAcc.mutex.tryAcquire()) {
         }
+
+        if (isSlow) {
+            Thread.sleep(1000);
+        }
+        //checks / prints balance
         System.out.println("Current balance for " + action.id + " is: " + currAcc.balance);
         currAcc.mutex.release();
-
     }
 
-    public void doAction(Action action){
+    //redirects to method handling the specified action.
+    public void doAction(Action action, Boolean isSlow) throws InterruptedException {
         String act = action.action;
         switch (act) {
-            case "D" -> deposit(action);
-            case "W" -> withdraw(action);
-            case "T" -> tranfer(action);
-            case "B" -> balance(action);
+            case "D" -> deposit(action, isSlow);
+            case "W" -> withdraw(action, isSlow);
+            case "T" -> tranfer(action, isSlow);
+            case "B" -> balance(action, isSlow);
         }
     }
-    public void start(){
+
+    public void start() {
         accounts = initializeAccounts();
         initializeThreads();
     }
 
 }
-
