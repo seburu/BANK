@@ -83,6 +83,8 @@ public class Controller {
 
         //checks if resource is available before use and then occupies it.
         while (!currAcc.mutex.tryAcquire()) {
+            //Thread sleeps before trying again to make it easier to optain resource.
+            Thread.sleep(1);
         }
 
         //slow thread sleeps
@@ -102,6 +104,7 @@ public class Controller {
         Account currAcc = findAccount(action.id);
 
         while (!currAcc.mutex.tryAcquire()) {
+            Thread.sleep(1);
         }
 
         if (isSlow) {
@@ -154,6 +157,7 @@ public class Controller {
         Account currAcc = findAccount(action.id);
 
         while (!currAcc.mutex.tryAcquire()) {
+            Thread.sleep(1);
         }
 
         if (isSlow) {
@@ -179,5 +183,4 @@ public class Controller {
         accounts = initializeAccounts();
         initializeThreads();
     }
-
 }
